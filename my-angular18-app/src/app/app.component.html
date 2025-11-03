@@ -1,0 +1,107 @@
+<h3>Template Reference Variables (#var)</h3>
+<div class="toolbar">
+
+
+  <input #box type="text" placeholder="Type something" (input)="current = box.value" />
+  <button (click)="read(box.value)">Read value</button>
+  <button (click)="box.focus()">Focus input</button>
+  <span style="margin-left:8px;color:#666">length={{ box.value.length || 0 }}</span>
+  <input #text type="button" (click)="addText()" value="clickme"/>
+</div>
+<p>Current: {{ current }}</p>
+<p>text={{text.value}}</p>
+<p>user.profile</p>
+
+
+<div *ngIf="ok; else other">OK</div>
+<ng-template #other>Not OK</ng-template>
+<li *ngFor="let item of items; index as i">{{ i }} {{ item }}</li>
+
+<select (change)="alert= $any($event.target).value">
+  <option value="info">Info</option>
+  <option value="warning">Warning</option>
+  <option value="danger">Danger</option>
+</select>
+
+
+<input (input)="msg = $any($event.target).value" [value]="msg" />
+
+<ng-container
+  [ngTemplateOutlet]="alert === 'info' ? infoTpl : (alert === 'warning' ? warnTpl : successTpl)"
+  [ngTemplateOutletContext]="{ $implicit: msg }">
+</ng-container>
+
+<ng-template #infoTpl let-text>
+  <p style="color:royalblue">Info: {{ text }}</p>
+</ng-template>
+
+<ng-template #warnTpl let-text>
+  <p style="color:darkorange">Warning: {{ text }}</p>
+</ng-template>
+
+<ng-template #successTpl let-text>
+  <p style="color:seagreen">Success: {{ text }}</p>
+</ng-template>
+
+
+<button (click)="count = count + 1">Add Count</button>
+<br>
+
+<button (click)="handleEvent()" >To know count click me</button>
+<input #inputtext (input)="text2 = $any($event.target).value">
+
+
+<button (click)="toggle()">Toggle user</button>
+<p *ngIf="users as u; else empty">Hello {{ u?.name }}!</p>
+<ng-template #empty>No user</ng-template>
+
+
+<p>Chained: {{ ratio | percent:'1.0-2' | uppercase }}</p>
+
+<ng-container *ngIf="users$ | async as users; else loading">
+  <ul>
+    <li *ngFor="let u of users">{{ u.name }}</li>
+  </ul>
+</ng-container>
+<ng-template #loading>Loading...</ng-template>
+
+<p>{{'davoodh' | capitalize:3 }}</p>
+<p>{{'TakaTak' | reverse}}</p>
+
+<input [(ngModel)]="filter" placeholder="Search name" />
+
+<div>
+  List of funds
+<li *ngFor="let share of shares | search:filter">
+  {{ share.name }} - Expense Ratio: {{ share.expenseratio }}
+</li>
+</div>
+
+
+<h3>List of funds3</h3>
+<input [(ngModel)]="filter" placeholder="Search name" />
+
+<ul>
+  <li *ngFor="let share of shares | search:filter">
+    {{ share.name }} - Expense Ratio: {{ share.expenseratio }}
+  </li>
+</ul>
+
+
+
+<p>{{test | userinfo}}</p>
+
+
+<input [disabled]="true" />        <!-- property binding -->
+<input [attr.disabled]="true" />   <!-- attribute binding -->
+<button [attr.aria-label]="btnLabel">Click Me</button>
+
+
+<div [attr.data-user-id]="123">
+  Div data user id artt
+</div>
+<br>
+<button (click)="shuffle()">Shuffle</button>
+<div *ngFor="let it of shares; trackBy: trackById">
+  {{it.name}}
+</div>
