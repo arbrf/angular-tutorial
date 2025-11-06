@@ -1,0 +1,13 @@
+<h1>parent works!</h1>
+
+<!-- <a routerLink="child">Navigate to child</a> -->
+<a routerLink="/child">Go to Child</a>
+
+<app-child [child]="name"  (saved)="onSaved($event)">
+    This is parent ng content
+    <div header>This is header</div>
+    <div body>This is body</div>
+    <div footer>This is footer</div>
+   
+</app-child>   
+

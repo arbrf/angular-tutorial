@@ -1,0 +1,12 @@
+<p>child works!{{child}}</p>
+
+
+<button (click)="inc()">Clicked {{ count }} times</button>
+
+<div class="card">
+      <h3>Reusable Card Component</h3>
+     <div *ngIf="showContent"> <ng-content></ng-content>  </div>
+      <header><ng-content select="[header]"></ng-content></header>
+      <section><ng-content select="[body]"></ng-content></section>
+      <footer><ng-content select="[footer]"></ng-content></footer>
+</div>
