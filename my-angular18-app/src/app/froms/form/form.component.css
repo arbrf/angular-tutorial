@@ -1,0 +1,52 @@
+form {
+  max-width: 400px;
+  margin: 20px auto;
+  background: #fafafa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid crimson;
+}
+
+input.ng-valid.ng-touched {
+  border: 1px solid seagreen;
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 6px 12px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+input.ng-touched.ng-invalid {
+  border-color: red;
+}
+
+input.ng-touched.ng-valid {
+  border-color: green;
+}
+
+.error small {
+  color: red;
+  display: block;
+}

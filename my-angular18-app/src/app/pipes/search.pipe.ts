@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Share } from '../app.component';
+import { Share } from '../angularcore/angularcore.component';
+
 
 @Pipe({
   name: 'search',
