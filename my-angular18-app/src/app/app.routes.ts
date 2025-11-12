@@ -7,6 +7,7 @@ export const routes: Routes = [
     {path:'',redirectTo:'parent',pathMatch:'full'},
     {path:'parent',component:ParentComponent},
     {path:'child',component:ChildComponent},
-    {path:'form',component:FormComponent}
+    {path:'form',component:FormComponent},
+    {path:'counter-a',loadComponent:()=>import('./counter-a/counter-a.component').then(c=>c.CounterAComponent)}
     
 ];

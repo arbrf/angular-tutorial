@@ -8,11 +8,14 @@ import { SearchPipe } from './pipes/search.pipe';
 import { UserinfoPipe } from './pipes/userinfo.pipe';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { CounterAComponent } from './counter-a/counter-a.component';
+import { CounterBComponent } from './counter-b/counter-b.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, FormsModule, ReversePipe, CapitalizePipe, SearchPipe, UserinfoPipe],
+  imports: [CounterAComponent, CounterBComponent,
+    RouterOutlet, CommonModule, FormsModule, ReversePipe, CapitalizePipe, SearchPipe, UserinfoPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
