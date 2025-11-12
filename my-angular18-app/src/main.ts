@@ -8,7 +8,7 @@ import { importProvidersFrom } from '@angular/core';
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes,),
-    importProvidersFrom(FormsModule)
+   // importProvidersFrom(FormsModule)
   ]
 });
 

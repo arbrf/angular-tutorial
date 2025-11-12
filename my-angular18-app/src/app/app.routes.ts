@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 export const routes: Routes = [
   { path: 'parent', component: ParentComponent },
   { path: 'child', component: ChildComponent },
+  { path: 'child/:id', component: ChildComponent },
   // ⬇️ add providers here so the routed component gets Forms providers
   { path: 'form', component: FormComponent, providers: [importProvidersFrom(FormsModule)] },
   { path: 'core', component: AngularcoreComponent },

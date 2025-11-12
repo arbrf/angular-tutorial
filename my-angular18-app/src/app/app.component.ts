@@ -20,6 +20,7 @@ export class AppComponent {
   navLinks = [
     { path: '/parent', label: 'Parent' },
     { path: '/child', label: 'Child' },
+    { path: 'child/1', label: 'ChildID' },
     { path: '/form', label: 'Forms' },
     { path: '/core', label: 'Angular Core' }
   ];

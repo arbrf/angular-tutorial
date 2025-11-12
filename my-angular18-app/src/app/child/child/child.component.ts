@@ -1,21 +1,45 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { NgIf } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 
 @Component({
   selector: 'app-child',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf,HttpClient],
   templateUrl: './child.component.html',
-  styleUrl: './child.component.css'
+  styleUrls: ['./child.component.css']
+
 })
 export class ChildComponent {
-showContent: boolean=false;
-inc() {
-  this.count++;
-this.saved.emit(this.count);
-}
-@Input() child='';
-@Output() saved = new EventEmitter<number>();
-count: number=0;
+  showContent: boolean=false;
+  inc() {
+    this.count++;
+  this.saved.emit(this.count);
+  }
+  @Input() child='';
+  @Output() saved = new EventEmitter<number>();
+  count: number=0;
+  constructor(private router: Router,private route: ActivatedRoute, ) {}
+  id: string | null = null;
+
+  ngOnInit() {
+    this.id = this.route.snapshot.paramMap.get('id') ?? '';
+  }
+
+  http = inject(HttpClient);
+  users: any[] = [];
+  loading = false;
+  error = '';
+
+  load() {
+    this.loading = true;
+    this.error = '';
+    this.http.get<any[]>('https://jsonplaceholder.typicode.com/users')
+      .subscribe({
+        next: (data) => { this.users = data; this.loading = false; },
+        error: () => { this.error = 'Failed to load users'; this.loading = false; }
+      });
+  }
 }

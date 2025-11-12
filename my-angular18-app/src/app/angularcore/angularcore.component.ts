@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, computed, ElementRef, signal, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
-import { Router } from 'express';
+import { Router } from '@angular/router';
+//import { Router } from 'express'; 2 hrs waste ngModel not injected
 import { of, delay } from 'rxjs';
 import { CapitalizePipe } from '../pipes/capitalize.pipe';
 import { ReversePipe } from '../pipes/reverse.pipe';
@@ -26,7 +27,7 @@ export class AngularcoreComponent {
   span = 1;
 
   constructor(private router:Router) {}
- 
+
   // 🔹 Template Reference & ViewChild
   @ViewChild('text') text!: ElementRef<HTMLInputElement>;
   @ViewChild('inputtext') inputtext!: ElementRef<HTMLInputElement>;
@@ -35,7 +36,7 @@ export class AngularcoreComponent {
 
   // 🔹 Arrays and Toggle Example
   show = true;
- 
+
 
   // 🔹 Object and State
   user: { profile?: { email?: string } } | undefined = undefined;
@@ -99,13 +100,13 @@ button='Click me';
     this.shares = [...this.shares].reverse();
     if(!this.shows()){
        this.button='Click me to Hide';
-        
+
     }
     else{
        this.button='Click me to Show';
-      
+
     }
-   
+
     if(this.shows()){
       this.shows.set(false);
     }
@@ -126,7 +127,7 @@ button='Click me';
     this._timer = setTimeout(() => {
       this.loadings.set(false);
     }, 800);
-    
+
   }
   showError() {
     this.error.set(true);
@@ -138,7 +139,7 @@ button='Click me';
     this.items.set([ { id: 1, name: 'Angular' ,price:100 },
     { id: 2, name: 'React',price:200 },
     { id: 3, name: 'Vue',price:150 }]);
-   
+
   }
 
   clear() { this.items.set([]); }
@@ -162,7 +163,7 @@ nextId=4;
         console.log("Math.random = "+t);
         let r=Math.floor(t * (i + 1));
         console.log("after multiple math.random with i+1== "+r);
-       
+
         const j = r;
         console.log("copy [i]= "+copy[i].name+" copy[j]= "+copy[j].name+" -------  "+copy[j].name, copy[i].name);
         [copy[i], copy[j]] = [copy[j], copy[i]];
@@ -170,12 +171,12 @@ nextId=4;
       return copy;
     });
   }
-  
+
 items = signal([
     { id: 1, name: 'Angular',price:100 },
     { id: 2, name: 'React',price:200 },
     { id: 3, name: 'Vue',price:150 }
-  ]);  
+  ]);
   query = signal('');
   sortKey = signal<'name' | 'price'>('name');
   sortDir = signal<1 | -1>(1); // 1 asc, -1 desc

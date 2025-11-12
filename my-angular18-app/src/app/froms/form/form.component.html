@@ -1,5 +1,5 @@
-<form #myForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
-  <!-- NAME FIELD -->
+<!-- <form #myForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+
   <div class="form-group">
     <label for="name">Name:</label>
     <input
@@ -14,17 +14,17 @@
       [(ngModel)]="model.name"
       #name="ngModel"
     />
-
-    <!-- Error Messages for Name -->
-    <div class="error" *ngIf="name.invalid && (name.dirty || name.touched)">
-      <small *ngIf="name.errors?.['required']">Name is required.</small>
-      <small *ngIf="name.errors?.['minlength']">
-        Name must be at least {{ name.errors?.['minlength'].requiredLength }} characters long.
+    <p>{{model.name}}</p>
+    
+    <div class="error" *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+      <small *ngIf="name?.errors?.['required']">Name is required.</small>
+      <small *ngIf="name?.errors?.['minlength']">
+        Name must be at least {{ name?.errors?.['minlength'].requiredLength }} characters long.
       </small>
-      <small *ngIf="name.errors?.['maxlength']">
-        Name cannot exceed {{ name.errors?.['maxlength'].requiredLength }} characters.
+      <small *ngIf="name?.errors?.['maxlength']">
+        Name cannot exceed {{ name?.errors?.['maxlength'].requiredLength }} characters.
       </small>
-      <small *ngIf="name.errors?.['pattern']">
+      <small *ngIf="name?.errors?.['pattern']">
         Name can only contain alphabets and spaces.
       </small>
     </div>
@@ -32,7 +32,7 @@
 
   <br />
 
-  <!-- EMAIL FIELD -->
+
   <div class="form-group">
     <label for="email">Email:</label>
     <input
@@ -47,11 +47,10 @@
       #email="ngModel"
     />
 
-    <!-- Error Messages for Email -->
-    <div class="error" *ngIf="email.invalid && (email.dirty || email.touched)">
-      <small *ngIf="email.errors?.['required']">Email is required.</small>
-      <small *ngIf="email.errors?.['email']">Please enter a valid email address.</small>
-      <small *ngIf="email.errors?.['pattern']">Invalid email format.</small>
+    <div class="error" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+      <small *ngIf="email?.errors?.['required']">Email is required.</small>
+      <small *ngIf="email?.errors?.['email']">Please enter a valid email address.</small>
+      <small *ngIf="email?.errors?.['pattern']">Invalid email format.</small>
     </div>
   </div>
 
@@ -62,5 +61,28 @@
   <div *ngIf="submitted">
     <p>✅ Form submitted successfully!</p>
     <pre>{{ model }}</pre>
+  </div>
+</form> -->
+
+
+<h3>Reactive Forms</h3>
+<form [formGroup]="form" (ngSubmit)="onSubmitReactive()">
+  <div class="form-group">
+        <label for="reactiveName">Enter Name:</label>
+        <input type="text" id="reactiveName" formControlName="name" class="form-control" name="name" />
+        <div *ngIf="name?.errors && (name?.dirty || name?.touched)" class="error-messages">
+          <div *ngIf="name?.errors?.['required']">Name is required.</div>
+          <div *ngIf="name?.errors?.['minlength']">Name must be at least 3 characters long.</div>
+          <div *ngIf="name?.errors?.['maxlength']">Name cannot exceed 30 characters.</div>
+          <div *ngIf="name?.errors?.['pattern']">Name can only contain alphabets and spaces.</div>
+        </div>
+        <br>
+        <label for="reactiveEmail">Enter Email:</label>
+        <input type="email" id="reactiveEmail" formControlName="email" class="form-control" name="email" />
+        <div *ngIf="email?.errors && (email?.dirty || email?.touched)" class="error-messages">
+          <div *ngIf="email?.errors?.['required']">Email is required.</div>
+          <div *ngIf="email?.errors?.['email']">Please enter a valid email address.</div>
+
+        </div>       
   </div>
 </form>
