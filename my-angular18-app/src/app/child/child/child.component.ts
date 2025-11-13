@@ -1,19 +1,26 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { Component, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule,HttpClient } from '@angular/common/http';
 
 
 @Component({
   selector: 'app-child',
   standalone: true,
-  imports: [NgIf,HttpClient],
+  imports: [NgIf,HttpClientModule,NgFor],
   templateUrl: './child.component.html',
   styleUrls: ['./child.component.css']
 
 })
-export class ChildComponent {
+export class ChildComponent implements  OnChanges{
   showContent: boolean=false;
+@Input() itemsInput: string[] = [];
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['itemsInput']) {
+      console.log('Previous:', changes['itemsInput'].previousValue);
+      console.log('Current:', changes['itemsInput'].currentValue);
+    }
+  }
   inc() {
     this.count++;
   this.saved.emit(this.count);

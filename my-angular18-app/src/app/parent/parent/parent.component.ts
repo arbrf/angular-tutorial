@@ -12,6 +12,15 @@ import { ChildComponent } from "../../child/child/child.component";
   styleUrl: './parent.component.css'
 })
 export class ParentComponent {
+
+itemsInput: string[]= ['Apple', 'Banana'];;
+
+   
+toggleInputItems() {
+    console.log('Before:', this.itemsInput);
+    this.itemsInput=this.itemsInput?.push('New Item') ? this.itemsInput : ['Item 1', 'Item 2', 'Item 3']; 
+    console.log('After:', this.itemsInput);
+}
 onSaved(count: number) {
 console.log("Count increased "+count);
 }

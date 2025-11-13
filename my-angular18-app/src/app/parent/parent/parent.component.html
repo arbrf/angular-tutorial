@@ -3,7 +3,11 @@
 <!-- <a routerLink="child">Navigate to child</a> -->
 <a routerLink="/child">Go to Child</a>
 
-<app-child [child]="name"  (saved)="onSaved($event)">
+
+
+<button  (click)="toggleInputItems()">
+  InputItem value changes before and after </button>
+<app-child [child]="name"  (saved)="onSaved($event)" [itemsInput]="itemsInput">
     This is parent ng content
     <div header>This is header</div>
     <div body>This is body</div>
