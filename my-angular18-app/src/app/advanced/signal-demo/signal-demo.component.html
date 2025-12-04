@@ -1,0 +1,12 @@
+<h3>Signals + OnPush</h3>
+
+<p>Count: {{ count() }}</p>
+<button (click)="inc()">Increment</button>
+
+<ul>
+  @for (item of items(); track item.id) {
+  <li>{{ item.label }}</li>
+  }
+</ul>
+
+<button (click)="add()">Add Item</button>

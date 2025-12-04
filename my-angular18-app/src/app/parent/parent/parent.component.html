@@ -1,8 +1,21 @@
 <h1>parent works!</h1>
 
+<div #container>
+  <p>Hello</p>
+</div>
+
+<button (click)="addItem()">Add Item</button>
+<button (click)="removeItem()">Remove Item</button>
+<textarea #textarea style="width: 200px; height: 200px; background: lightblue; overflow: scroll;">
+  Resize me!
+</textarea>
+
 <!-- <a routerLink="child">Navigate to child</a> -->
 <a routerLink="/child">Go to Child</a>
-
+<p>Data from service: {{data}}</p>
+<ul>
+    <li *ngFor="let item of data">{{item}}</li>
+</ul>
 <app-child [child]="name"  (saved)="onSaved($event)">
     This is parent ng content
     <div header>This is header</div>
